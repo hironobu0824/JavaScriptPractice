@@ -1,22 +1,33 @@
 const quiz = [
     {
-        question: 'ゲーム史上、最も売れたゲーム機はどれ？',
-        answers: [ 'スーパーファミコン', 'PlayStation 2', 'ニンテンドーDS', 'Xbox 360'],
-        correct: 'ニンテンドーDS'
+        question: '高橋宏暢の血液型は？',
+        answers: [ 'A型', 'B型', 'O型', 'AB型'],
+        correct: 'B型',
     }, {
-        question: '糸井重里が企画に関わった、任天堂の看板ゲームといえば？',
-        answers: [ 'MOTHER2', 'スーパーマリオブラザーズ3', 'スーパードンキーコング', '星のカービィ'],
-        correct: 'MOTHER2'
+        question: '大学時代の学部は',
+        answers: [ '情報学部', '文学部', '工学部', '経済学部'],
+        correct: '経済学部'
     }, {
-        question: 'ファイナルファンタジーⅣの主人公の名前は？',
-        answers: [ 'フリオニール', 'クラウド', 'ティーダ', 'セシル'],
-        correct: 'セシル'
+        question: '高橋が以下の中で好きな料理は？',
+        answers: [ '中華料理', '和食', 'イタリアン', 'フレンチ'],
+        correct: '中華料理'
     }
 ]
 
 let quizIndex = 0;
 let correctNum = 0;
 const $button = document.getElementsByTagName('button');
+
+// スタートメッセージ
+if (window.confirm('高橋に関するクイズのページです。全部で3問です。クイズを始めますか？')) {
+    setTimeout(fadeout,1000);
+}
+
+// メッセージが消えてクイズがスタートするアクション
+function fadeout() {
+    document.getElementById('pop-up').style.display='none';
+    document.getElementById('container').style.display='';
+}
 
 // ボタンをクリックしたら正誤判定
 let handlerIndex = 0;
@@ -55,6 +66,7 @@ const clickHandler = (e) => {
     } else {
         //問題数がもうなければこちらを実行
         window.alert('終了!　あなたは、' + quiz.length + '問中' + correctNum + '問正解！');
+        location.href = "index.html";
     }
 }
 
