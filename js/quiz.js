@@ -16,6 +16,7 @@ const quiz = [
 
 let quizIndex = 0;
 let correctNum = 0;
+let result = [];
 const $button = document.getElementsByTagName('button');
 
 // スタートメッセージ
@@ -48,14 +49,16 @@ const setupQuiz = (quizIndex) => {
     }
 }
 
-setupQuiz(quizIndex);
+setupQuiz(0);
 
 const clickHandler = (e) => {
     if(quiz[quizIndex].correct === e.target.textContent) {
         window.alert('正解');
         correctNum++;
+        result[quizIndex] = true;
     } else {
         window.alert('不正解');
+        result[quizIndex] = false;
     }
 
     quizIndex++;
@@ -65,9 +68,61 @@ const clickHandler = (e) => {
         setupQuiz(quizIndex);
     } else {
         //問題数がもうなければこちらを実行
-        window.alert('終了!　あなたは、' + quiz.length + '問中' + correctNum + '問正解！');
-        location.href = "index.html";
+        document.getElementById('container').style.display='none';
+        document.getElementById('quiz-result').style.display='';
+        document.getElementById('quiz-result-text').textContent = getResult(correctNum);
+        generate_table(quiz, result)
     }
 }
+
+const getResult = (correctNum) => {
+    if (correctNum === 3) {
+        return "「高橋の理解者」レベル"
+    } else if (correctNum === 2) {
+        return "「高橋宏暢の友人」レベル"
+    } else if (correctNum === 1) {
+        return "「高橋宏暢の知り合い」レベル"
+    } else {
+        return "「赤の他人」レベル"
+    }
+}
+
+function generate_table(quiz, result) {
+    // body の参照を取得
+    let body = document.getElementsByTagName("body")[0];
+  
+    // <table> 要素と <tbody> 要素を作成
+    let tbl = document.createElement("table");
+    let tblBody = document.createElement("tbody");
+  
+    // すべてのセルを作成
+    for (let i = 0; i < quiz.length; i++) {
+        // 表の行を作成
+        let row = document.createElement("tr");
+  
+        let cell1 = document.createElement("td");
+        let cellText1 = document.createTextNode(quiz[i]['question']);
+        cell1.appendChild(cellText1);
+        let cell2 = document.createElement("td");
+        if (result[i] === true) {
+            cellText2 = document.createTextNode("正解");
+        } else {
+            cellText2 = document.createTextNode("不正解");
+        }
+        cell2.appendChild(cellText2);
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+  
+        // 表の本体の末尾に行を追加
+        tblBody.appendChild(row);
+    }
+  
+    // <tbody> を <table> の中に追加
+    tbl.appendChild(tblBody);
+    // <table> を <body> の中に追加
+    body.appendChild(tbl);
+    // tbl の border 属性を 2 に設定
+    tbl.setAttribute("border", "2");
+  }
 
 
