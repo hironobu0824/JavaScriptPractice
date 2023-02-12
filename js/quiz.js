@@ -22,13 +22,11 @@ const $button = document.getElementsByTagName('button');
 // スタートメッセージ
 if (window.confirm('高橋に関するクイズのページです。全部で3問です。クイズを始めますか？')) {
     setTimeout(fadeout,1000);
+} else {
+    location.href = "index.html";
 }
 
-// メッセージが消えてクイズがスタートするアクション
-function fadeout() {
-    document.getElementById('pop-up').style.display='none';
-    document.getElementById('container').style.display='';
-}
+setupQuiz(0); //問題初期表示
 
 // ボタンをクリックしたら正誤判定
 let handlerIndex = 0;
@@ -39,8 +37,21 @@ while (handlerIndex < $button.length) {
     handlerIndex++;
 }
 
-// クイズの問題文と選択肢を定義
-const setupQuiz = (quizIndex) => {
+/**
+ * メッセージが消えてクイズがスタートする
+ * @return void
+ */
+function fadeout() {
+    document.getElementById('pop-up').style.display='none';
+    document.getElementById('container').style.display='';
+}
+
+/**
+ * クイズの問題文と選択肢を表示する
+ * @param {Number} quizIndex クイズ番号
+ * @return void
+ */
+function setupQuiz(quizIndex) {
     document.getElementById('js-question').textContent = quiz[quizIndex].question;
     let buttonIndex = 0;
     while(buttonIndex < $button.length) {
@@ -49,17 +60,23 @@ const setupQuiz = (quizIndex) => {
     }
 }
 
-setupQuiz(0);
-
-const clickHandler = (e) => {
+/**
+ * 問題の解答に対する正誤判定
+ * @param e クリックイベント
+ * @return void
+ */
+function clickHandler(e) {
+    let array = {};
     if(quiz[quizIndex].correct === e.target.textContent) {
         window.alert('正解');
         correctNum++;
-        result[quizIndex] = true;
+        array['bool'] = true;
     } else {
         window.alert('不正解');
-        result[quizIndex] = false;
+        array['bool'] = false;
     }
+    array['answer'] = e.target.textContent;
+    result[quizIndex] = array;
 
     quizIndex++;
 
@@ -75,7 +92,12 @@ const clickHandler = (e) => {
     }
 }
 
-const getResult = (correctNum) => {
+/**
+ * 高橋の理解レベルを返す
+ * @param {Number} 正解数
+ * @return {String} 高橋の理解レベル
+ */
+function getResult(correctNum) {
     if (correctNum === 3) {
         return "「高橋の理解者」レベル"
     } else if (correctNum === 2) {
@@ -87,6 +109,12 @@ const getResult = (correctNum) => {
     }
 }
 
+/**
+ * 正誤表を作る
+ * @param {Array} クイズ
+ * @param {Array} 解答
+ * @return void
+ */
 function generate_table(quiz, result) {
     // body の参照を取得
     let body = document.getElementsByTagName("body")[0];
@@ -94,27 +122,16 @@ function generate_table(quiz, result) {
     // <table> 要素と <tbody> 要素を作成
     let tbl = document.createElement("table");
     let tblBody = document.createElement("tbody");
+
+    generate_row(tblBody, '問題', '解答', '正誤');
   
     // すべてのセルを作成
     for (let i = 0; i < quiz.length; i++) {
-        // 表の行を作成
-        let row = document.createElement("tr");
-  
-        let cell1 = document.createElement("td");
-        let cellText1 = document.createTextNode(quiz[i]['question']);
-        cell1.appendChild(cellText1);
-        let cell2 = document.createElement("td");
-        if (result[i] === true) {
-            cellText2 = document.createTextNode("正解");
+        if (result[i]['bool'] === true) {
+            generate_row(tblBody, quiz[i]['question'], result[i]['answer'], "◯");
         } else {
-            cellText2 = document.createTextNode("不正解");
+            generate_row(tblBody, quiz[i]['question'], result[i]['answer'], "×");
         }
-        cell2.appendChild(cellText2);
-        row.appendChild(cell1);
-        row.appendChild(cell2);
-  
-        // 表の本体の末尾に行を追加
-        tblBody.appendChild(row);
     }
   
     // <tbody> を <table> の中に追加
@@ -123,6 +140,31 @@ function generate_table(quiz, result) {
     body.appendChild(tbl);
     // tbl の border 属性を 2 に設定
     tbl.setAttribute("border", "2");
-  }
+}
 
+/**
+ * 表の行を作る
+ * @param tblBody tBody要素
+ * @param {String} text1
+ * @param {String} text2
+ * @param {String} text3
+ * @return void
+ */
+ function generate_row(tblBody, text1, text2, text3) {
+    let row = document.createElement("tr");
+    let cell1 = document.createElement("td");
+    let cellText1 = document.createTextNode(text1);
+    cell1.appendChild(cellText1);
+    let cell2 = document.createElement("td");
+    let cellText2 = document.createTextNode(text2);
+    cell2.appendChild(cellText2);
+    let cell3 = document.createElement("td");
+    let cellText3 = document.createTextNode(text3);
+    cell3.appendChild(cellText3);
+    row.appendChild(cell1);
+    row.appendChild(cell2);
+    row.appendChild(cell3);
 
+    // 表の本体の末尾に行を追加
+    tblBody.appendChild(row);
+ }
