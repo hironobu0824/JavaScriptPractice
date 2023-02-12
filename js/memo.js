@@ -8,7 +8,6 @@ document.querySelector('button').addEventListener('click', () => {
 
   let selectedFontWeight;
 
-  console.log(fontWeight);
   fontWeight.forEach(type => {
     if (type.checked === true) {
       selectedFontWeight = type.value;

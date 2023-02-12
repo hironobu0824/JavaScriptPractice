@@ -1,6 +1,17 @@
 'use strict';
 
-document.getElementById('time').textContent = new Date();
+const dayname = ['日','月','火','水','木','金','土'];
+
+setDate();
+
+function setDate() {
+  document.getElementById('time').textContent = dateFormat(new Date());
+  setTimeout(setDate,1000);
+}
+
+function dateFormat(date) {
+  return date.getFullYear().toString() + '年' + (date.getMonth()+1).toString() + '月' + date.getDate().toString() + '日(' + dayname[date.getDay().toString()] + ')' + date.getHours().toString() + '時' + date.getMinutes().toString() + '分' + date.getSeconds().toString() + '秒';
+}
 
 document.getElementById('quizButton').onclick = function() {
   location.href = "quiz.html";

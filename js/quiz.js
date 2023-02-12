@@ -117,7 +117,7 @@ function getResult(correctNum) {
  */
 function generate_table(quiz, result) {
     // body の参照を取得
-    let body = document.getElementsByTagName("body")[0];
+    let topButton = document.getElementById("top");
   
     // <table> 要素と <tbody> 要素を作成
     let tbl = document.createElement("table");
@@ -137,7 +137,8 @@ function generate_table(quiz, result) {
     // <tbody> を <table> の中に追加
     tbl.appendChild(tblBody);
     // <table> を <body> の中に追加
-    body.appendChild(tbl);
+    
+    topButton.before(tbl);
     // tbl の border 属性を 2 に設定
     tbl.setAttribute("border", "2");
 }
@@ -167,4 +168,8 @@ function generate_table(quiz, result) {
 
     // 表の本体の末尾に行を追加
     tblBody.appendChild(row);
- }
+}
+
+document.getElementById('top').addEventListener('click',() => {
+    location.href = "index.html";
+})
