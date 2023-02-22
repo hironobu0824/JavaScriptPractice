@@ -13,21 +13,13 @@ function dateFormat(date) {
   return date.getFullYear().toString() + '年' + (date.getMonth()+1).toString() + '月' + date.getDate().toString() + '日(' + dayname[date.getDay().toString()] + ')' + date.getHours().toString() + '時' + date.getMinutes().toString() + '分' + date.getSeconds().toString() + '秒';
 }
 
-document.getElementById('quizButton').onclick = function() {
-  location.href = "quiz.html";
-}
-
-document.getElementById('memo').onclick = function() {
-  location.href = "memo.html";
-}
-
 document.querySelector('#dubbleClickButton').addEventListener('dblclick', () => {
-  document.querySelector('#dubbleClickNotice').textContent = "ダブルクリックしました。（シングルクリックで取り消せます）"
+  window.alert("ダブルクリックしました。");
 })
 
-document.querySelector('#dubbleClickButton').addEventListener('click', () => {
-  document.querySelector('#dubbleClickNotice').textContent = ""
-})
+// document.querySelector('#dubbleClickButton').addEventListener('click', () => {
+//   window.alert("シングルクリックしました。");
+// })
 
 document.addEventListener('mousemove', e => {
   document.querySelector('#clientXY').textContent = `x座標:${e.clientX},y座標:${e.clientY}`
@@ -38,10 +30,10 @@ document.addEventListener('keydown', e => {
 
 const text = document.querySelector('textarea');
 text.addEventListener('focus', () => {
-  console.log('focus');
+  document.getElementById('text-area').classList.replace('non-focus-textarea','focus-textarea');
 });
 text.addEventListener('blur', () => {
-  console.log('blur');
+  document.getElementById('text-area').classList.replace('focus-textarea','non-focus-textarea');
 });
 text.addEventListener('input', () => {
   document.querySelector('#textCount').textContent = `${text.value.length}文字`;

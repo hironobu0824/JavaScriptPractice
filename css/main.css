@@ -1,6 +1,90 @@
+@charset "UTF-8";
+
+html {
+  font-size: 100%;
+}
+body {
+  color: #383e45;
+  font-size: 0.9rem;
+}
+a {
+  text-decoration: none;
+}
+a:visited {
+  color:beige;
+}
+
+img {
+  max-width: 100%;
+}
+li {
+  list-style: none;
+}
+
+.non-focus-textarea {
+  border:1px solid lightblue;
+}
+
+.focus-textarea {
+  border:2px solid lightblue;
+}
+
+.site-title {
+  /* width: 120px; */
+  color:aliceblue;
+  line-height: 1px;
+  padding: 10px 0;
+}
+.site-title a {
+  display: block;
+}
+.section-title {
+  display: inline-block;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-bottom: solid 1px #383e45;
+}
+.content-title {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto 30px auto;
+  padding: 0 4%;
+  text-align: center;
+}
+
+
+#header {
+  display: flex;
+  background-color: #383e45;
+  height: 60px;
+  justify-content: space-between; 
+  /* 各アイテムを均等に配置し、最初のアイテムは先頭に寄せ、最後のアイテムは末尾に寄せる */
+  align-items: center; /* 縦方向の位置 真ん中 */
+  margin: 0 auto;
+}
+#header ul {
+  display: flex;
+  padding: 10px 0;
+}
+#header li {
+  margin-left: 30px;
+}
+#header li a {
+  color: whitesmoke;
+}
+#header li a:hover {
+  color:darkgrey;
+}
+/* 
+
 .title {
   color: blue;
-}
+} */
 
 .pop-up {
   background-color: gray;
@@ -15,4 +99,46 @@
   margin: 0 auto;
 }
 
-/*# sourceMappingURL=main.css.map */
+.table {
+  margin:10px auto;
+}
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 60%;
+}
+
+table tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+
+table th,table td{
+  text-align: center;
+  width: 25%;
+  padding: 10px 0;
+}
+
+table th {
+  background-color: lightblue;
+}
+
+table td.icon{
+  background-size: 35px;
+  background-position: left 5px center;
+  background-repeat: no-repeat;
+  padding-left: 30px;
+}
+
+table td.icon.bird{
+  background-image: url(icon-bird.png)
+}
+
+table td.icon.whale{
+  background-image: url(icon-whale.png)
+}
+
+table td.icon.crab{
+  background-image: url(icon-crab.png)
+}
