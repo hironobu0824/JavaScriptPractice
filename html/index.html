@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Mypage</title>
+  <!-- Webページの概要をHTMLで記述したタグ。ユーザーや検索エンジンにページの概要や要約を伝える役割 -->
+  <meta name="description" content="Hironobu Takahashiのマイページ">
+  <!-- 表示領域 「width=device-width」で、表示領域の幅をPCやスマホなどの端末画面の幅に合わせられる。「initial-scale=1」は初期のズーム倍率。 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- タグに表示されるアイコン -->
+  <link rel="shortcut icon" href="../img/icons8-h-16.png">
+  <!-- WEBサイトがブラウザによって見え方が変わってしまうのを無くすリセットCSS -->
+  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"> 
+  <!-- css読み込み -->
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <header id="header" class="wrapper">
+    <h2 class="site-title"><a href="index.html">My Page</a></h2>
+    <nav>
+      <ul>
+        <li><a href="#quiz_area">Quiz</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="wrapper">
+    <h3 class="section-title">Time</h3>
+    <p id="time"></p>
+  </section>
+  <section class="wrapper">
+    <h3 class="section-title">Mouce Position</h3>
+    <p id="clientXY">  </p>
+  </section>
+  <section class="wrapper">
+    <h3 class="section-title">Press key</h3>
+    <p id="pressKey"></p>
+    <form>
+      <textarea id="text-area" class="non-focus-textarea"></textarea>
+    </form>
+    <p id="textCount"></p>
+  </section>
+  <section id="quiz_area" class="wrapper">
+    <h3 class="section-title">Quiz</h3>
+    <div><button id="start_button">スタート</button></div>
+    <div class="container" id="container" style="display: none;">
+      <div class="jumbotron mt-5">
+        <div class="d-flex justify-content-center">
+          <div id="js-question" class="alert alert-primary" role="alert">
+            問題文
+          </div>
+        </div>
+        <div id="js-items" class="d-flex justify-content-center">
+          <div class="m-2">
+            <button type="button" id="js-btn-1" class="btn btn-primary">選択肢１</button>
+          </div>
+          <div class="m-2">
+            <button type="button" id="js-btn-2" class="btn btn-primary">選択肢２</button>
+          </div>
+          <div class="m-2">
+            <button type="button" id="js-btn-3" class="btn btn-primary">選択肢３</button>
+          </div>
+          <div class="m-2">
+            <button type="button" id="js-btn-4" class="btn btn-primary">選択肢４</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="quiz-result" style="display: none;">
+      <p>あなたは</p>
+      <div id="quiz-result-text"></div>
+      <button id="retry">再チャレンジ</button></div>
+    </div>
+  </section>
+  <section class="wrapper">
+    <h3 class="section-title">Free</h3>
+    <div><button id="dubbleClickButton">謎ボタン</button></div>
+    <p id="dubbleClickNotice"></p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+    <p>  .</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+  
+
+  <script src="../js/main.js"></script>
+  <script src="../js/quiz.js"></script>
+</body>
+</html>
